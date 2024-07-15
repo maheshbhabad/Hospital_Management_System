@@ -26,10 +26,10 @@
 	<div class="container-fluid p-3">
 		<div class="row">
 
-			<div class="col-md-4">
+			<div class="col-md-4 offset-md-4">
 				<div class="card point-card">
 					<div class="card-body">
-						<p class="fs-3 text-center">Add Doctor</p>
+						<p class="fs-3 text-center">Edit Doctor Details</p>
 						<c:if test="${not empty Msg }">
 							<p class="text-center text-success fs-3" role="alert">${Msg}</p>
 							<c:remove var="Msg" scope="session" />
@@ -39,26 +39,36 @@
 							<p class="text-center text-danger fs-3">${error}</p>
 							<c:remove var="error" scope="session" />
 						</c:if>
+						
+						<%
+						int id=Integer.parseInt(request.getParameter("id"));
+						DoctorDao dao2 = new DoctorDao(DbConnect.myConnection());
+						Doctor d= dao2.getDoctorById(id);
+						%>
 
-						<form action="../adddoc" method="post">
+						<form action="../updateDoctor" method="post">
 							<div class="mb-3">
 								<label class="form-label">Full Name</label><input type="text"
-									required name="fullname" class="form-control">
+									required name="fullname" class="form-control"
+									value="<%=d.getFullName() %>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">DOB</label><input type="date" required
-									name="dob" class="form-control">
+									name="dob" class="form-control"
+									value="<%=d.getDob() %>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Qualification</label><input
-									type="text" required name="qualification" class="form-control">
+									type="text" required name="qualification" class="form-control"
+									value="<%=d.getQualification() %>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Specialist</label><select name="spec"
-									required class="form-control">
+									required class="form-control"
+									value="<%=d.getSpeciallist() %>">
 									<option>--select--</option>
 									<%
 									SpecialistDao dao = new SpecialistDao(DbConnect.myConnection());
@@ -75,19 +85,22 @@
 
 							<div class="mb-3">
 								<label class="form-label">Email</label><input type="text"
-									required name="email" class="form-control">
+									required name="email" class="form-control"
+									value="<%=d.getEmail() %>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Mobile No</label><input type="text"
-									required name="mobno" class="form-control">
+									required name="mobno" class="form-control" 
+									value="<%=d.getMobNo() %>">
 							</div>
 
 							<div class="mb-3">
-								<label class="form-label">Password</label><input type="password"
-									required name="password" class="form-control">
+								<label class="form-label">Password</label><input type="text"
+									required name="password" class="form-control"
+									value="<%=d.getPassword() %>">
 							</div>
-
+							<input type="hidden" name="id" value="<%=d.getId() %>">
 							<button type="submit " class="btn btn-primary col-md-12">Update</button>
 						</form>
 					</div>
@@ -95,50 +108,7 @@
 			</div>
 
 
-			<div class="col-md-8">
-				<div class="card point-card">
-					<div class="card-body">
-						<p class="fs-3 text-center">Doctor Details</p>
-
-						<table class="table">
-							<thead>
-								<tr>
-									<th class="col">Full Name</th>
-									<th class="col">DOB</th>
-									<th class="col">Qualification</th>
-									<th class="col">Specialist</th>
-									<th class="col">Email</th>
-									<th class="col">Mob No</th>
-									<th class="col">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<%
-								DoctorDao dao2 = new DoctorDao(DbConnect.myConnection());
-								List<Doctor> list1 = dao2.getAllDoctor();
-								for (Doctor d : list1) {
-								%>
-								<tr>
-
-									<td><%=d.getFullName()%></td>
-									<td><%=d.getDob()%></td>
-									<td><%=d.getQualification()%></td>
-									<td><%=d.getSpeciallist()%></td>
-									<td><%=d.getEmail()%></td>
-									<td><%=d.getMobNo()%></td>
-
-									<td><a href="edit_doctor.jsp?id=<%=d.getId() %>" class="btn btn-sm btn-primary">Edit</a> <a
-										href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a></td>
-								</tr>
-								<%
-								}
-								%>
-							</tbody>
-
-						</table>
-					</div>
-				</div>
-			</div>
+			
 
 		</div>
 	</div>

@@ -13,6 +13,22 @@ public class Doctor {
 		super();
 		
 	}
+	
+	
+	public Doctor(int id, String fullName, String dob, String qualification, String speciallist, String email,
+			String mobNo, String password) {
+		super();
+		this.id = id;
+		this.fullName = fullName;
+		this.dob = dob;
+		this.qualification = qualification;
+		this.speciallist = speciallist;
+		this.email = email;
+		this.mobNo = mobNo;
+		this.password = password;
+	}
+
+
 	public Doctor(String fullName, String dob, String qualification, String speciallist, String email,
 			String mobNo, String password) {
 		super();
@@ -72,6 +88,10 @@ public class Doctor {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public void setSpecialist(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
