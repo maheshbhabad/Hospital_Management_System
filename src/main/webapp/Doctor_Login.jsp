@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Doctor Login</title>
-<%@include file="Component/AllCss.jsp"%>
+<%@include file="Component/AllCss.jsp" %>
 <style type="text/css">
 .point-card {
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
@@ -21,8 +23,16 @@
 				<div class="card point-card">
 					<div class="card-body">
 						<p class="fs-4 text-center">Doctor Login</p>
+						<c:if test="${not empty Msg }">
+							<p class="text-center text-success fs-5" role="alert">${Msg}</p>
+							<c:remove var="Msg" scope="session" />
+						</c:if>
 
-						<form action="#" method="post">
+						<c:if test="${not empty error }">
+							<p class="text-center text-danger fs-5">${error}</p>
+							<c:remove var="error" scope="session" />
+						</c:if>
+						<form action="doctorLogin" method="post">
 							<div class="mb-3">
 								<label class="form-Label">Email Address</label><input required
 									name="email" type="email" class="form-control">

@@ -26,17 +26,17 @@
 	<div class="container-fluid p-3">
 		<div class="row">
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<div class="card point-card">
 					<div class="card-body">
 						<p class="fs-3 text-center">Add Doctor</p>
 						<c:if test="${not empty Msg }">
-							<p class="text-center text-success fs-3" role="alert">${Msg}</p>
+							<p class="text-center text-success fs-5" role="alert">${Msg}</p>
 							<c:remove var="Msg" scope="session" />
 						</c:if>
 
 						<c:if test="${not empty error }">
-							<p class="text-center text-danger fs-3">${error}</p>
+							<p class="text-center text-danger fs-5">${error}</p>
 							<c:remove var="error" scope="session" />
 						</c:if>
 
@@ -88,14 +88,14 @@
 									required name="password" class="form-control">
 							</div>
 
-							<button type="submit " class="btn btn-primary col-md-12">Update</button>
+							<button type="submit " class="btn btn-primary " >Submit</button>
 						</form>
 					</div>
 				</div>
 			</div>
 
 
-			<div class="col-md-8">
+			<div class="col-md-9">
 				<div class="card point-card">
 					<div class="card-body">
 						<p class="fs-3 text-center">Doctor Details</p>
@@ -127,8 +127,9 @@
 									<td><%=d.getEmail()%></td>
 									<td><%=d.getMobNo()%></td>
 
-									<td><a href="edit_doctor.jsp?id=<%=d.getId() %>" class="btn btn-sm btn-primary">Edit</a> <a
-										href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a></td>
+									<td><a href="edit_doctor.jsp?id=<%=d.getId() %>" class="btn btn-sm btn-primary">Edit</a> 
+									<a
+										href="../deleteDoctor?id=<%=d.getId()%>" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a></td>
 								</tr>
 								<%
 								}

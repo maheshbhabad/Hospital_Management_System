@@ -22,7 +22,7 @@
 						aria-current="page" href="Doctor_Login.jsp">DOCTOR</a></li>
 
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="">APPOINTMENT</a></li>
+						aria-current="page" href="user_appointment.jsp">APPOINTMENT</a></li>
 
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="User_Login.jsp">USER</a></li>
@@ -33,10 +33,10 @@
 
 				<c:if test="${not empty userObj }">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="">APPOINTMENT</a></li>
+						aria-current="page" href="user_appointment.jsp">APPOINTMENT</a></li>
 
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="">VIEW APPOINTMENT</a></li>
+						aria-current="page" href="view_appointment.jsp">VIEW APPOINTMENT</a></li>
 					<div class="dropdown">
 
 						<button class="btn btn-success dropdown-toggle " type="button"
@@ -45,7 +45,7 @@
 							<i class="fa-solid fa-circle-user"></i>${userObj.fullName}</button>
 
 						<ul class="dropdown-menu" aria-lebelledly="navbarDropdown">
-							<li><a class="dropdown-item" href="#">Change Password</a></li>
+							<li><a class="dropdown-item" href="">Change Password</a></li>
 							<li><a class="dropdown-item" href="userlogout">Logout</a></li>
 						</ul>
 						</li>

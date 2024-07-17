@@ -59,12 +59,9 @@ public class Userdao {
 				
 			}
 			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		return u ;
 		
 	}

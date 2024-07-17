@@ -13,8 +13,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			
-				<li class="nav-item"><a class="nav-link active" href="home.jsp"><i></i>HOME</a></li>
-				<li class="nav-item"><a class="nav-link active" href="doctor.jsp"><i></i>DOCTOR</a></li>
+				<li class="nav-item"><a class="nav-link active" href="index.jsp"><i></i>HOME</a></li>
 				<li class="nav-item"><a class="nav-link active" href="patient.jsp"><i></i>PATIENT</a></li>
 
 			</ul>
@@ -23,9 +22,10 @@
 				<div class="dropdown">
 					<button class="btn btn-light dropdown-toggle" type="button" 
 					id="dropdownMenuButton1" data-bs-toggle="dropdown"
-					aria-expanded="false" >Admin</button>
+					aria-expanded="false" ><i class="fas fa-user-circle"></i> ${docObj.fullName}</button>
 					<ul class="dropdown-menu" aria-lebelledly="dropdownMenuButton1">
-						<li><a class="dropdown-item" href="../AdminLogout">Logout</a></li>
+						<li><a class="dropdown-item" href="profile.jsp">Edit</a></li>
+						<li><a class="dropdown-item" href="../doctorLogout">Logout</a></li>
 					</ul>
 				</div>
 			</form>
