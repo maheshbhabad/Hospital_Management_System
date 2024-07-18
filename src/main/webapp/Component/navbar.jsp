@@ -45,7 +45,7 @@
 							<i class="fa-solid fa-circle-user"></i>${userObj.fullName}</button>
 
 						<ul class="dropdown-menu" aria-lebelledly="navbarDropdown">
-							<li><a class="dropdown-item" href="">Change Password</a></li>
+							<li><a class="dropdown-item" href="Change_Password.jsp">Change Password</a></li>
 							<li><a class="dropdown-item" href="userlogout">Logout</a></li>
 						</ul>
 						</li>

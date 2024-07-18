@@ -65,4 +65,40 @@ public class Userdao {
 		return u ;
 		
 	}
+	
+	public boolean changePass(int id,String newPassword) {
+		boolean f=false;
+		try {
+			String sql="update user_dts set password=? where id=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1,newPassword);
+			ps.setInt(2,id);
+			int i=ps.executeUpdate();
+			if(i==1) {
+				f=true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
+	
+	public boolean checkOldPass(int id,String oldPassword) {
+		boolean f=false;
+		try {
+			String sql="select *  from user_dts  where id=? and  password=?";
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setInt(1,id);
+			ps.setString(2,oldPassword);
+			
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				f=true;
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
 }

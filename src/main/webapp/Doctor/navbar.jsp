@@ -24,7 +24,7 @@
 					id="dropdownMenuButton1" data-bs-toggle="dropdown"
 					aria-expanded="false" ><i class="fas fa-user-circle"></i> ${docObj.fullName}</button>
 					<ul class="dropdown-menu" aria-lebelledly="dropdownMenuButton1">
-						<li><a class="dropdown-item" href="profile.jsp">Edit</a></li>
+						<li><a class="dropdown-item" href="edit_Profile.jsp">Edit</a></li>
 						<li><a class="dropdown-item" href="../doctorLogout">Logout</a></li>
 					</ul>
 				</div>

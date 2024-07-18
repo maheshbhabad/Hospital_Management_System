@@ -24,6 +24,9 @@
 </style>
 </head>
 <body>
+<c:if test="${empty userObj }">
+		<c:redirect url="User_Login.jsp"></c:redirect>
+	</c:if>
 	<%@include file="Component/navbar.jsp"%>
 	<div class="container-fluid p-5">
 		<div class="row">

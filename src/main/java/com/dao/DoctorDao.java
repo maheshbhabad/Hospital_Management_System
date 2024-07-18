@@ -16,6 +16,7 @@ public class DoctorDao {
 		super();
 		this.con = con;
 	}
+
 	public boolean registerDoctor(Doctor d) {
 		boolean f = false;
 
@@ -97,7 +98,7 @@ public class DoctorDao {
 		}
 		return d;
 	}
-	
+
 	public boolean UpdateDoctor(Doctor d) {
 		boolean f = false;
 
@@ -111,7 +112,7 @@ public class DoctorDao {
 			p.setString(5, d.getEmail());
 			p.setString(6, d.getMobNo());
 			p.setString(7, d.getPassword());
-			p.setInt(8,d.getId());
+			p.setInt(8, d.getId());
 			int i = p.executeUpdate();
 			if (i == 1) {
 				f = true;
@@ -121,14 +122,14 @@ public class DoctorDao {
 		}
 		return f;
 	}
-	
+
 	public boolean DeleteDoctor(int id) {
 		boolean f = false;
 
 		try {
 			String sql = "delete from doctor  where id=?";
 			PreparedStatement p = con.prepareStatement(sql);
-			p.setInt(1,id);
+			p.setInt(1, id);
 			int i = p.executeUpdate();
 			if (i == 1) {
 				f = true;
@@ -138,19 +139,19 @@ public class DoctorDao {
 		}
 		return f;
 	}
-	
-public Doctor Login(String em,String ps) {
-		
+
+	public Doctor Login(String em, String ps) {
+
 		Doctor d = null;
-		
+
 		try {
-			String sql="select * from doctor where email=? and password=?";
-			PreparedStatement p=con.prepareStatement(sql);
-			p.setString(1,em);
+			String sql = "select * from doctor where email=? and password=?";
+			PreparedStatement p = con.prepareStatement(sql);
+			p.setString(1, em);
 			p.setString(2, ps);
-			
-			ResultSet rs=p.executeQuery();
-			while(rs.next()) {
+
+			ResultSet rs = p.executeQuery();
+			while (rs.next()) {
 				d = new Doctor();
 				d.setId(rs.getInt(1));
 				d.setFullName(rs.getString(2));
@@ -161,20 +162,21 @@ public Doctor Login(String em,String ps) {
 				d.setMobNo(rs.getString(7));
 				d.setPassword(rs.getString(8));
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return d ;
-		
+		return d;
+
 	}
+
 	public int countAppointment() {
-		int i=0;
+		int i = 0;
 		try {
-			String sql= "select * from appointment";
-			PreparedStatement ps=con.prepareStatement(sql);
-			ResultSet rs=ps.executeQuery();
-			while(rs.next()) {
+			String sql = "select * from appointment";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
 				i++;
 			}
 		} catch (Exception e) {
@@ -182,14 +184,14 @@ public Doctor Login(String em,String ps) {
 		}
 		return i;
 	}
-	
+
 	public int countUser() {
-		int i=0;
+		int i = 0;
 		try {
-			String sql= "select * from user_dts";
-			PreparedStatement ps=con.prepareStatement(sql);
-			ResultSet rs=ps.executeQuery();
-			while(rs.next()) {
+			String sql = "select * from user_dts";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
 				i++;
 			}
 		} catch (Exception e) {
@@ -197,14 +199,14 @@ public Doctor Login(String em,String ps) {
 		}
 		return i;
 	}
-	
+
 	public int countSpecialist() {
-		int i=0;
+		int i = 0;
 		try {
-			String sql= "select * from specialist";
-			PreparedStatement ps=con.prepareStatement(sql);
-			ResultSet rs=ps.executeQuery();
-			while(rs.next()) {
+			String sql = "select * from specialist";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
 				i++;
 			}
 		} catch (Exception e) {
@@ -212,14 +214,14 @@ public Doctor Login(String em,String ps) {
 		}
 		return i;
 	}
-	
+
 	public int countDoctor() {
-		int i=0;
+		int i = 0;
 		try {
-			String sql= "select * from doctor";
-			PreparedStatement ps=con.prepareStatement(sql);
-			ResultSet rs=ps.executeQuery();
-			while(rs.next()) {
+			String sql = "select * from doctor";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
 				i++;
 			}
 		} catch (Exception e) {
@@ -227,21 +229,79 @@ public Doctor Login(String em,String ps) {
 		}
 		return i;
 	}
-	
+
 	public int countAppointmentByDoctor(int did) {
-		int i=0;
+		int i = 0;
 		try {
-			String sql= "select * from appointment where doctorId=?";
-			PreparedStatement ps=con.prepareStatement(sql);
+			String sql = "select * from appointment where doctorId=?";
+			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, did);
-			ResultSet rs=ps.executeQuery();
-			while(rs.next()) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
 				i++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return i;
+	}
+
+	public boolean changePass(int id, String newPassword) {
+		boolean f = false;
+		try {
+			String sql = "update doctor set password=? where id=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, newPassword);
+			ps.setInt(2, id);
+			int i = ps.executeUpdate();
+			if (i == 1) {
+				f = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
+
+	public boolean checkOldPass(int id, String oldPassword) {
+		boolean f = false;
+		try {
+			String sql = "select *  from doctor  where id=? and  password=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.setString(2, oldPassword);
+
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				f = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
+
+	public boolean editDoctorProfile(Doctor d) {
+		boolean f = false;
+
+		try {
+			String sql = "Update doctor set full_name=?, dob=?, qualification=?, specialist=?, mob_no=? where id=?";
+			PreparedStatement p = con.prepareStatement(sql);
+			p.setString(1, d.getFullName());
+			p.setString(2, d.getDob());
+			p.setString(3, d.getQualification());
+			p.setString(4, d.getSpeciallist());
+			p.setString(5, d.getMobNo());
+			p.setInt(6, d.getId());
+			int i = p.executeUpdate();
+			if (i == 1) {
+				f = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return f;
 	}
 
 }
